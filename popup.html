@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TabMergerAI</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="row">
+    <h1>TabMergerAI</h1>
+    <span id="modelTag" class="muted small"></span>
+    <span class="spacer"></span>
+    <a href="archive.html" target="_blank">Archive</a>
+    <a href="options.html" target="_blank">Options</a>
+  </header>
+
+  <main>
+    <div id="keyBanner" class="banner" hidden>
+      Add your Anthropic API key in <a href="options.html" target="_blank">Options</a> first.
+    </div>
+    <div id="busy" class="banner row" hidden><div class="spinner"></div><span id="busyText"></span></div>
+    <div id="error" class="banner error row" hidden>
+      <span id="errorText" class="grow"></span>
+      <button id="errorClose" class="link">dismiss</button>
+    </div>
+
+    <!-- Home: start either action -->
+    <section id="home">
+      <div class="card">
+        <h2>Organize tabs</h2>
+        <p class="muted small">Claude sorts tabs into topic groups, adding to the groups you already have where they fit. You check the groups before anything moves.</p>
+        <div class="row">
+          <select id="scope" class="grow">
+            <option value="all">All windows (merge)</option>
+            <option value="window">This window only</option>
+          </select>
+          <button id="organize" class="primary">Organize</button>
+        </div>
+        <label class="row small" title="Off: Claude may also move tabs between your groups"><input type="checkbox" id="keepGroups"> Keep my groups as they are, only sort ungrouped tabs</label>
+        <div id="undoRow" class="row small" hidden>
+          <span class="muted grow">You can put the last layout back.</span>
+          <button id="undo">Undo last organize</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Summarize &amp; archive</h2>
+        <p class="muted small">Saves a summary with every link to the Archive, then you choose whether to close the tabs.</p>
+        <div class="row">
+          <select id="sumTarget" class="grow">
+            <option value="highlighted">Selected tabs in this window</option>
+            <option value="window">Every tab in this window</option>
+          </select>
+          <button id="summarize" class="primary">Summarize</button>
+        </div>
+        <label class="row small"><input type="checkbox" id="deep"> Read page text (better summaries, asks for access to all sites once)</label>
+      </div>
+    </section>
+
+    <!-- Grouping preview -->
+    <section id="planView" hidden>
+      <div class="row">
+        <h2 class="grow" id="planTitle"></h2>
+        <span id="planUsage" class="muted small"></span>
+      </div>
+      <div id="groups"></div>
+      <div class="card apply">
+        <label class="row"><input type="radio" name="mode" value="groups"> Tab groups in this window <span class="muted small">(merge windows)</span></label>
+        <label class="row"><input type="radio" name="mode" value="windows"> One window per group</label>
+        <div class="row">
+          <button id="discardPlan">Discard</button>
+          <span class="spacer"></span>
+          <button id="applyPlan" class="primary">Apply</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary preview -->
+    <section id="summaryView" hidden>
+      <input type="text" id="sumTitle" class="title-input">
+      <p id="sumOverview"></p>
+      <ul id="sumPoints"></ul>
+      <div id="sumTabs" class="card"></div>
+      <div class="row">
+        <button id="discardSummary">Discard</button>
+        <span id="sumUsage" class="muted small"></span>
+        <span class="spacer"></span>
+        <button id="saveOnly">Save, keep open</button>
+        <button id="archiveClose" class="primary">Archive &amp; close tabs</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

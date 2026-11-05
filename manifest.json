@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "TabMergerAI",
+  "version": "0.1.0",
+  "description": "Groups tabs by topic with Claude, merges windows, and summarizes tabs into an archive before closing them.",
+  "permissions": ["tabs", "tabGroups", "storage", "scripting"],
+  "host_permissions": ["https://api.anthropic.com/*"],
+  "optional_host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TabMergerAI"
+  },
+  "options_page": "options.html",
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Ctrl+Shift+Y" },
+      "description": "Open TabMergerAI"
+    }
+  }
+}

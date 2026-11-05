@@ -1,0 +1,37 @@
+body { width: 470px; max-height: 600px; }
+
+header {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: var(--bg);
+  z-index: 1;
+}
+
+main { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+section { display: flex; flex-direction: column; gap: 10px; }
+.card p { margin: 0 0 8px; }
+.card > .row + .row, .card > .row + label { margin-top: 8px; }
+
+/* Group cards */
+#groups { display: flex; flex-direction: column; gap: 8px; }
+.group.off { opacity: .45; }
+.group-head { gap: 6px; }
+.group-head input[type="text"] { flex: 1; min-width: 0; font-weight: 600; padding: 3px 6px; }
+.count { min-width: 22px; text-align: right; }
+.badge { font-size: 10.5px; padding: 1px 5px; border: 1px solid var(--border); border-radius: 8px; white-space: nowrap; }
+.tab-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+.tab-list li { gap: 6px; }
+.tab-list li .ellipsis { flex: 1; min-width: 0; }
+.tab-list select { max-width: 110px; padding: 1px 4px; font-size: 11.5px; }
+.more { margin-top: 4px; }
+
+.apply label { gap: 6px; margin-bottom: 4px; }
+
+/* Summary */
+.title-input { font-size: 15px; font-weight: 600; width: 100%; }
+#sumOverview { margin: 0; }
+#sumPoints { margin: 0; padding-left: 18px; }
+#sumTabs { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow: auto; }
+#sumTabs .t { gap: 6px; align-items: flex-start; }
+#sumTabs .t .fav { margin-top: 2px; }

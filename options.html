@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TabMergerAI Options</title>
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    main { max-width: 620px; margin: 32px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 14px; }
+    .card { display: flex; flex-direction: column; gap: 8px; }
+    label.field { display: flex; flex-direction: column; gap: 4px; }
+    #apiKey { width: 100%; font-family: Consolas, monospace; }
+    #keyStatus.ok { color: var(--ok); }
+    #keyStatus.bad { color: var(--danger); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TabMergerAI options</h1>
+
+    <div class="card">
+      <h2>Anthropic API key</h2>
+      <label class="field">
+        <input type="password" id="apiKey" placeholder="sk-ant-…" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="row">
+        <button id="saveKey" class="primary">Save</button>
+        <button id="testKey">Test key</button>
+        <button id="showKey" class="link">show</button>
+        <span id="keyStatus" class="small"></span>
+      </div>
+      <p class="muted small">Stored unencrypted in this Chrome profile's local extension storage, which isn't synced. Only
+        tab titles and URLs are sent to api.anthropic.com, plus page text when "read page text" is on for a summary.</p>
+    </div>
+
+    <div class="card">
+      <h2>Model</h2>
+      <select id="model"></select>
+      <p class="muted small">Haiku is fast and costs a fraction of a cent per organize. Opus groups more carefully.</p>
+    </div>
+
+    <div class="card">
+      <h2>Behavior</h2>
+      <label class="field">Organize by default
+        <select id="scope">
+          <option value="all">All windows (merge)</option>
+          <option value="window">This window only</option>
+        </select>
+      </label>
+      <label class="row"><input type="checkbox" id="includePinned"> Include pinned tabs when organizing (they get unpinned)</label>
+      <p class="muted small">Shortcut: <b>Ctrl+Shift+Y</b> opens the popup. Change it at
+        <a href="#" id="shortcuts">chrome://extensions/shortcuts</a>.</p>
+    </div>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
